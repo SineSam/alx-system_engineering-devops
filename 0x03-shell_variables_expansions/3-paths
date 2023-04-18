@@ -1,2 +1,2 @@
-!#/bin/bash
+#!/bin/bash
 for dir in $(find $PATH -type d -printf '%p\n');do count=$((count+1))
