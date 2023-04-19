@@ -1,2 +1,2 @@
 #!/bin/bash
-printf "Number of directories in path: %d\n" $PATH -type d | wc -l
+num_directories=$(find "$PATH" -type d | wc -l)
