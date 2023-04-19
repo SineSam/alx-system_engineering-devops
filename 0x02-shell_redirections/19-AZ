@@ -1,2 +1,2 @@
 #!/bin/bash
-sed 's/<A_Z>/g; s/<c_e>/g .
+tr 'A' 'Z';'c' 'e'
