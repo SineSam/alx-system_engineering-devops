@@ -1,2 +1,2 @@
 #!/bin/bash
-echo $PATH | tr '/' '\n' | wc -l
+printf "Number of directories in path: %d\n" $PATH -type d | wc -l
