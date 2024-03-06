@@ -9,13 +9,16 @@ while [ $i -lt 20 ];
 do
   ((i++))
   case $i in
-    5)
+    4)
+      echo $i
       echo "bad luck from China"
       ;;
-    10)
+    9)
+      echo $i
       echo "bad luck from Japan"
       ;;
-    18)
+    17)
+      echo $i
       echo "bad luck from Italy"
       ;;
     *)
