@@ -13,25 +13,30 @@ if __name__ == "__main__":
 
     employee_ID = sys.argv[1]
     jsonplaceholder = 'https://jsonplaceholder.typicode.com'
-    url = f'{jsonplaceholder}/users/{employee_ID}'
+    users_endpoint = '/users'
+    url = f'{jsonplaceholder}{users_endpoint}/{employee_ID}'
+    todo_endpoint = '/todos?userID={employee_ID}'
+    todo_url = f'{url}{todo_endpoint}'
 
     # Make a GET request to API
-    response = requests.get(url)
+    response_url = requests.get(url)
+    response_todo_url = requests.get(todo_url)
 
     # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        employee_name = response.json().get('name')
-        todo_url = f'{jsonplaceholder}/todo?userId={employee_ID}'
-        retrieve_todo = requests.get(todo_url)
-        tasks = retrieve_todo.json()
+    if response_url.status_code == 200\
+            and response_todo_url.status_code == 200:
+        user_data = response_url.json()
+        todo_data = response_todo_url.json()
+
+        complete_tasks = [task for task in todo_data if task.get('completed')]
+        employee_name = user_data.get('name')
 
         # Retrieve tasks
-        complete_tasks = [task for task in tasks if task.get('complete')]
         print("Employee {} is done with tasks({}/{})):".format(
-            employee_name, len(complete_tasks), len(tasks)))
+            employee_name, len(complete_tasks), len(todo_data)))
         for task in complete_tasks:
             print("\t{}".format(task.get('title')))
     # Error message if request was unsuccessful
     else:
         print(f"Error: Unable to fetch data.\
-            Status code: {response.status_code}")
+            Status code: {response_url.status_code}")
