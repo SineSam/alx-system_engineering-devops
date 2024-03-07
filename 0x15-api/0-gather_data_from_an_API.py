@@ -27,10 +27,11 @@ if __name__ == "__main__":
 
         # Retrieve tasks
         complete_tasks = [task for task in tasks if task.get('complete')]
-        print("Employee {} is done with tasks({}/{})):".format(employee_name,
-            len(complete_tasks), len(tasks)))
+        print("Employee {} is done with tasks({}/{})):".format(
+            employee_name, len(complete_tasks), len(tasks)))
         for task in complete_tasks:
             print("\t{}".format(task.get('title')))
     # Error message if request was unsuccessful
     else:
-        print(f"Error: Unable to fetch data. Status code: {response.status_code}")
+        print(f"Error: Unable to fetch data.\
+            Status code: {response.status_code}")
